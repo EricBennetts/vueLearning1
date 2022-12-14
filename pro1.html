@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map & Weather Forecast</title>
+    <link rel="stylesheet" href="pro1.css">
+    <script src="https://api.map.baidu.com/api?type=webgl&v=2.0&ak=juqnHWSyecgbhry61v0kRyb6OkX4hm59"></script>
+</head>
+<body>
+    <div id="container"></div>
+    <div id="searchFun" class="floatingWin">&nbsp;&nbsp;城市名：
+        <input type="text" id="inputCityName" v-model="cityName" @keyup.enter="theLocation();searchWeather()">
+        <button @click="theLocation();searchWeather()">查询</button>
+    
+        <div id="wea" class="floatingWin" v-if="showWea">
+            <!-- <input type="text" v-model="city" @keyup.enter="searchWeather"> -->
+            <ul class="weaList">
+                <li v-for="(item,index) in weatherInfoList" v-show="index<3">
+                    <div><span>{{item.phrase}}</span></div>
+                    <div>
+                        <b>{{item.tem2}}</b>
+                        ~
+                        <b>{{item.tem1}}</b>
+                    </div>
+                    <div><span>{{item.day}}</span></div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="main.js"></script>
+
+
